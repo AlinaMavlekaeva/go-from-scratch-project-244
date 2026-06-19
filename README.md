@@ -1,0 +1,2 @@
+### Hexlet tests and linter status:
+[![Actions Status](https://github.com/AlinaMavlekaeva/go-from-scratch-project-244/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/AlinaMavlekaeva/go-from-scratch-project-244/actions)
