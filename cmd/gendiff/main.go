@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"github.com/urfave/cli/v3"
@@ -19,6 +20,14 @@ func main() {
 				Usage:   "output	format",
 			},
 		},
+		Action: func(ctx context.Context, cmd *cli.Command) error {
+			path1 := cmd.Args().Get(0)
+			path2 := cmd.Args().Get(1)
+			fmt.Println(path1, path2)
+			return nil
+		},
 	}
-	cmd.Run(context.Background(), os.Args)
+	if err := cmd.Run(context.Background(), os.Args); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+	}
 }
