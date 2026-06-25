@@ -33,6 +33,18 @@ func genDiff(k string, info1, info2 map[string]any) string {
 	}
 	return fmt.Sprintf("- %s: %v", k, v1)
 }
+func getKeys(info1, info2 map[string]any) []string {
+	keys := []string{}
+	for k1 := range info1 {
+		keys = append(keys, k1)
+	}
+	for k2 := range info2 {
+		keys = append(keys, k2)
+	}
+	slices.Sort(keys)
+	keys = slices.Compact(keys)
+	return keys
+}
 func PrintDiff(path1, path2 string) error {
 	info1, err1 := parseData(path1)
 	if err1 != nil {
@@ -42,15 +54,7 @@ func PrintDiff(path1, path2 string) error {
 	if err2 != nil {
 		return err2
 	}
-	keys := []string{}
-	for name1 := range info1 {
-		keys = append(keys, name1)
-	}
-	for name2 := range info2 {
-		keys = append(keys, name2)
-	}
-	slices.Sort(keys)
-	keys = slices.Compact(keys)
+	keys := getKeys(info1, info2)
 	fmt.Println("{")
 	for _, k := range keys {
 		fmt.Println(genDiff(k, info1, info2))
