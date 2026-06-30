@@ -5,4 +5,4 @@ lint:
 lint-fix:
 	golangci-lint	run	--fix
 test:
-	go test . -cover
+	go test ./code -cover
