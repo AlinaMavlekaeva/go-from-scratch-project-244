@@ -7,25 +7,28 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func ParseJSON(path string) (map[string]any, error) {
-	var conf map[string]any
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return conf, err
-	}
-	err = json.Unmarshal(data, &conf)
-	if err != nil {
-		return conf, err
-	}
-	return conf, nil
+type Extension interface {
+	// Parse(path string) (map[string]any, error)
+	Unmarshal(data []byte, v any) error
 }
-func ParseYAML(path string) (map[string]any, error) {
+
+type JSON struct{}
+type YAML struct{}
+
+func (ext JSON) Unmarshal(data []byte, v any) error {
+	return json.Unmarshal(data, &v)
+}
+func (ext YAML) Unmarshal(data []byte, v any) error {
+	return yaml.Unmarshal(data, &v)
+}
+
+func Parse(path string, e Extension) (map[string]any, error) {
 	var conf map[string]any
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return conf, err
 	}
-	err = yaml.Unmarshal(data, &conf)
+	err = e.Unmarshal(data, &conf)
 	if err != nil {
 		return conf, err
 	}
