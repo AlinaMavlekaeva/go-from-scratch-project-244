@@ -1,36 +1,30 @@
 package code
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGenDiff_Table(t *testing.T) {
-	info1 := map[string]any{
-		"name":      "Info1",
-		"data":      "info",
-		"intData":   55,
-		"stringNum": "125.55",
+func TestGenDiff_JSON(t *testing.T) {
+	path1 := "../testdata/fixture/file1.json"
+	path2 := "../testdata/fixture/file2.json"
+	want := "{\n- follow: false\n  host: hexlet.io\n- proxy: 123.234.53.22\n- timeout: 50\n+ timeout: 20\n+ verbose: true\n}"
+	got, err := genDiff(path1, path2)
+	if err != nil {
+		t.Fatalf("Unexpected genDiff error: %v", err)
 	}
-	info2 := map[string]any{
-		"name":      "Info2",
-		"data":      "info",
-		"floatData": 75.5,
-		"stringNum": "125.55",
+	assert.Equal(t, want, got)
+}
+func TestGenDiff_YAML(t *testing.T) {
+	path1 := "../testdata/fixture/filepath1.yml"
+	path2 := "../testdata/fixture/filepath2.yml"
+	want := "{\n- follow: false\n  host: hexlet.io\n- proxy: 123.234.53.22\n- timeout: 50\n+ timeout: 20\n+ verbose: true\n}"
+	got, err := genDiff(path1, path2)
+	if err != nil {
+		t.Fatalf("Unexpected genDiff error: %v", err)
 	}
-	cases := []struct {
-		Name, key, want string
-	}{
-		{"ExistSameData", "data", "  data: info"},
-		{"ExistDiffData", "name", "- name: Info1\n+ name: Info2"},
-		{"ExistsAtFirst", "intData", "- intData: 55"},
-		{"ExistsAtSecond", "floatData", "+ floatData: 75.5"},
-	}
-	for _, c := range cases {
-		t.Run(c.Name, func(t *testing.T) {
-			got := genDiff(c.key, info1, info2)
-			assert.Equal(t, got, c.want)
-		})
-	}
+	fmt.Println(got)
+	assert.Equal(t, want, got)
 }

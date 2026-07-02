@@ -2,33 +2,31 @@ package parsers
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
+	"path/filepath"
 
 	"gopkg.in/yaml.v3"
 )
 
-type Extension interface {
-	// Parse(path string) (map[string]any, error)
-	Unmarshal(data []byte, v any) error
+var ParsersByExt = map[string]func(data []byte, v any) error{
+	".json": json.Unmarshal,
+	".yml":  yaml.Unmarshal,
+	".yaml": yaml.Unmarshal,
 }
 
-type JSON struct{}
-type YAML struct{}
-
-func (ext JSON) Unmarshal(data []byte, v any) error {
-	return json.Unmarshal(data, &v)
-}
-func (ext YAML) Unmarshal(data []byte, v any) error {
-	return yaml.Unmarshal(data, &v)
-}
-
-func Parse(path string, e Extension) (map[string]any, error) {
+func Parse(path string) (map[string]any, error) {
 	var conf map[string]any
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return conf, err
 	}
-	err = e.Unmarshal(data, &conf)
+	ext := filepath.Ext(path)
+	f, exists := ParsersByExt[ext]
+	if !exists {
+		return nil, fmt.Errorf("Unknown extension of file %s", path)
+	}
+	err = f(data, &conf)
 	if err != nil {
 		return conf, err
 	}
