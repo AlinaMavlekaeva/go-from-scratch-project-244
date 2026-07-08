@@ -1,7 +1,6 @@
 package code
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -25,6 +24,16 @@ func TestGenDiff_YAML(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Unexpected genDiff error: %v", err)
 	}
-	fmt.Println(got)
 	assert.Equal(t, want, got)
 }
+
+// func TestParse(t *testing.T) {
+// 	path1 := "../testdata/fixture/filepath1.json"
+// 	//path2 := "../testdata/fixture/filepath2.json"
+// 	want := "data"
+// 	got, err := parsers.Parse(path1)
+// 	if err != nil {
+// 		t.Fatalf("Unexpected Parse error: %v", err)
+// 	}
+// 	assert.Equal(t, want, got)
+// }
