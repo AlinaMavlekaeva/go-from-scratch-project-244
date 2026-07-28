@@ -4,20 +4,18 @@ import (
 	"code"
 )
 
-func PrintTree(path1, path2, format string) (string, error) {
-	tree, err := code.GenDiff(path1, path2)
-	if err != nil {
-		return "", err
-	}
+func PrintTree(tree code.Tree, format string) string {
 	formatter := GetFormatter(format)
 	diff := formatter(tree)
-	return diff, nil
+	return diff
 }
 
 func GetFormatter(format string) func(tree code.Tree) string {
 	switch format {
 	case "plain":
 		return PlainFormat
+	case "json":
+		return JSONFormat
 	default:
 		return StylishFormat
 	}

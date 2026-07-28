@@ -1,15 +1,16 @@
 package code
 
 import (
-	"fmt"
 	"parsers"
 	"slices"
 )
 
 type Tree struct {
-	Key, Status     string
-	OldValue, Value any
-	Deep            int
+	Key      string `json:"key"`
+	Status   string `json:"status"`
+	OldValue any    `json:"oldValue"`
+	Value    any    `json:"value"`
+	Deep     int    `json:"deep"`
 }
 
 func getKeys(infos ...map[string]any) []string {
@@ -125,6 +126,5 @@ func GenDiff(path1, path2 string) (Tree, error) {
 		return Tree{}, err
 	}
 	tree := getTree(info1, info2, 0)
-	fmt.Println(tree)
 	return tree, nil
 }

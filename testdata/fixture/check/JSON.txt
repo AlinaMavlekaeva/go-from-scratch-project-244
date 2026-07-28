@@ -1,0 +1,43 @@
+{
+  "key": "",
+  "status": "",
+  "oldValue": null,
+  "value": [
+    {
+      "key": "follow",
+      "status": "removed",
+      "oldValue": null,
+      "value": false,
+      "deep": 1
+    },
+    {
+      "key": "host",
+      "status": "same",
+      "oldValue": null,
+      "value": "hexlet.io",
+      "deep": 1
+    },
+    {
+      "key": "proxy",
+      "status": "removed",
+      "oldValue": null,
+      "value": "123.234.53.22",
+      "deep": 1
+    },
+    {
+      "key": "timeout",
+      "status": "updated",
+      "oldValue": 50,
+      "value": 20,
+      "deep": 1
+    },
+    {
+      "key": "verbose",
+      "status": "added",
+      "oldValue": null,
+      "value": true,
+      "deep": 1
+    }
+  ],
+  "deep": 0
+}

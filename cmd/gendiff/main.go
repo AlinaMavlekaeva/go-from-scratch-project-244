@@ -2,6 +2,7 @@ package main
 
 import (
 	//"code"
+	"code"
 	"context"
 	"fmt"
 	"formatters"
@@ -25,11 +26,11 @@ func main() {
 		Action: func(ctx context.Context, cmd *cli.Command) error {
 			path1 := cmd.Args().Get(0)
 			path2 := cmd.Args().Get(1)
-			diff, err := formatters.PrintTree(path1, path2, cmd.String("format"))
+			tree, err := code.GenDiff(path1, path2)
 			if err != nil {
 				return err
 			}
-			fmt.Println(diff)
+			fmt.Println(formatters.PrintTree(tree, cmd.String("format")))
 			return nil
 		},
 	}

@@ -1,0 +1,208 @@
+{
+  "key": "",
+  "status": "",
+  "oldValue": null,
+  "value": [
+    {
+      "key": "common",
+      "status": "same",
+      "oldValue": null,
+      "value": [
+        {
+          "key": "follow",
+          "status": "added",
+          "oldValue": null,
+          "value": false,
+          "deep": 2
+        },
+        {
+          "key": "setting1",
+          "status": "same",
+          "oldValue": null,
+          "value": "Value 1",
+          "deep": 2
+        },
+        {
+          "key": "setting2",
+          "status": "removed",
+          "oldValue": null,
+          "value": 200,
+          "deep": 2
+        },
+        {
+          "key": "setting3",
+          "status": "updated",
+          "oldValue": true,
+          "value": null,
+          "deep": 2
+        },
+        {
+          "key": "setting4",
+          "status": "added",
+          "oldValue": null,
+          "value": "blah blah",
+          "deep": 2
+        },
+        {
+          "key": "setting5",
+          "status": "added",
+          "oldValue": null,
+          "value": [
+            {
+              "key": "key5",
+              "status": "",
+              "oldValue": null,
+              "value": "value5",
+              "deep": 3
+            }
+          ],
+          "deep": 2
+        },
+        {
+          "key": "setting6",
+          "status": "same",
+          "oldValue": null,
+          "value": [
+            {
+              "key": "doge",
+              "status": "same",
+              "oldValue": null,
+              "value": [
+                {
+                  "key": "wow",
+                  "status": "updated",
+                  "oldValue": "",
+                  "value": "so much",
+                  "deep": 4
+                }
+              ],
+              "deep": 3
+            },
+            {
+              "key": "key",
+              "status": "same",
+              "oldValue": null,
+              "value": "value",
+              "deep": 3
+            },
+            {
+              "key": "ops",
+              "status": "added",
+              "oldValue": null,
+              "value": "vops",
+              "deep": 3
+            }
+          ],
+          "deep": 2
+        }
+      ],
+      "deep": 1
+    },
+    {
+      "key": "group1",
+      "status": "same",
+      "oldValue": null,
+      "value": [
+        {
+          "key": "baz",
+          "status": "updated",
+          "oldValue": "bas",
+          "value": "bars",
+          "deep": 2
+        },
+        {
+          "key": "foo",
+          "status": "same",
+          "oldValue": null,
+          "value": "bar",
+          "deep": 2
+        },
+        {
+          "key": "nest",
+          "status": "updated",
+          "oldValue": [
+            {
+              "key": "key",
+              "status": "",
+              "oldValue": null,
+              "value": "value",
+              "deep": 3
+            }
+          ],
+          "value": "str",
+          "deep": 2
+        }
+      ],
+      "deep": 1
+    },
+    {
+      "key": "group2",
+      "status": "removed",
+      "oldValue": null,
+      "value": [
+        {
+          "key": "abc",
+          "status": "",
+          "oldValue": null,
+          "value": 12345,
+          "deep": 2
+        },
+        {
+          "key": "deep",
+          "status": "",
+          "oldValue": null,
+          "value": [
+            {
+              "key": "id",
+              "status": "",
+              "oldValue": null,
+              "value": 45,
+              "deep": 3
+            }
+          ],
+          "deep": 2
+        }
+      ],
+      "deep": 1
+    },
+    {
+      "key": "group3",
+      "status": "added",
+      "oldValue": null,
+      "value": [
+        {
+          "key": "deep",
+          "status": "",
+          "oldValue": null,
+          "value": [
+            {
+              "key": "id",
+              "status": "",
+              "oldValue": null,
+              "value": [
+                {
+                  "key": "number",
+                  "status": "",
+                  "oldValue": null,
+                  "value": 45,
+                  "deep": 4
+                }
+              ],
+              "deep": 3
+            }
+          ],
+          "deep": 2
+        },
+        {
+          "key": "fee",
+          "status": "",
+          "oldValue": null,
+          "value": 100500,
+          "deep": 2
+        }
+      ],
+      "deep": 1
+    }
+  ],
+  "deep": 0
+}
