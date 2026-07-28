@@ -40,6 +40,7 @@ GLOBAL OPTIONS:
 Для корректной работы утилиты ей необходимо передать относительный путь до сравниваемых файлов и при необходимости желаемый формат вывода через флаг "--format". 
 
 **Работа утилиты без передачи флагов. Вывод по умолчания в формате "stylish".**
+
 Команда:   
  ```
  gendiff ./testdata/fixture/file1.json ./testdata/fixture/file2.json
@@ -57,6 +58,7 @@ GLOBAL OPTIONS:
 ```
 
 **Вывод данных в формате "plain"**
+
 Команда:
 ```
 gendiff ./testdata/fixture/file1.json ./testdata/fixture/file2.json -f plain
@@ -70,6 +72,7 @@ Property 'verbose' was added with value true
 ```
 
 **Вывод данных в формате "json"**
+
 Команда:
 ```
 gendiff ./testdata/fixture/file1.json ./testdata/fixture/file2.json -f json
@@ -121,6 +124,7 @@ gendiff ./testdata/fixture/file1.json ./testdata/fixture/file2.json -f json
 }
 ```
 **Пример работы утилиты с YAML файлами**
+
 Команда: 
 ```
 ./bin/gendiff ./testdata/fixture/filepath1.yml ./testdata/fixture/filepath2.yml
