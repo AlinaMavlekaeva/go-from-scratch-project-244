@@ -1,6 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/AlinaMavlekaeva/go-from-scratch-project-244/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/AlinaMavlekaeva/go-from-scratch-project-244/actions)
 
+
 ## genDiff
 
 ### About
@@ -142,3 +143,6 @@ gendiff ./testdata/fixture/file1.json ./testdata/fixture/file2.json -f json
 ```
 **Пример использвания :**
 [https://asciinema.org/a/6ekEuy0b6GiSBQlL](https://asciinema.org/a/nCnn4kVT1MHV18Ae)
+
+
+
