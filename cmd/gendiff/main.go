@@ -1,7 +1,6 @@
 package main
 
 import (
-	//"code"
 	"code"
 	"context"
 	"fmt"
@@ -20,7 +19,7 @@ func main() {
 				Name:    "format",
 				Aliases: []string{"f"},
 				Value:   "stylish",
-				Usage:   "output	format",
+				Usage:   "output	format: 'stylish', 'plain', 'json'.",
 			},
 		},
 		Action: func(ctx context.Context, cmd *cli.Command) error {
