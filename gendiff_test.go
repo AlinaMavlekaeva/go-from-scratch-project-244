@@ -19,8 +19,8 @@ func TestGetFlatTree_Table(t *testing.T) {
 		name, path1, path2 string
 		want               Tree
 	}{
-		{"JSON", "../testdata/fixture/file1.json", "../testdata/fixture/file2.json", JSONTree1},
-		{"YAML", "../testdata/fixture/filepath1.yml", "../testdata/fixture/filepath2.yml", YAMLTree1},
+		{"JSON", "./testdata/fixture/file1.json", "./testdata/fixture/file2.json", JSONTree1},
+		{"YAML", "./testdata/fixture/filepath1.yml", "./testdata/fixture/filepath2.yml", YAMLTree1},
 	}
 	for _, c := range cases {
 		c := c
@@ -40,8 +40,8 @@ func TestGetNestedTree_Table(t *testing.T) {
 		name, path1, path2 string
 		want               Tree
 	}{
-		{"JSON", "../testdata/fixture/filepath1.json", "../testdata/fixture/filepath2.json", JSONTree2},
-		{"YAMLPlain", "../testdata/fixture/file1.yml", "../testdata/fixture/file2.yml", YAMLTree2},
+		{"JSON", "./testdata/fixture/filepath1.json", "./testdata/fixture/filepath2.json", JSONTree2},
+		{"YAMLPlain", "./testdata/fixture/file1.yml", "./testdata/fixture/file2.yml", YAMLTree2},
 	}
 	for _, c := range cases {
 		c := c

@@ -1,7 +1,7 @@
 package code
 
 import (
-	"parsers"
+	"code/parsers"
 	"slices"
 )
 

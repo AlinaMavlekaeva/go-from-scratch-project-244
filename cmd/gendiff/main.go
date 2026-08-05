@@ -2,9 +2,9 @@ package main
 
 import (
 	"code"
+	"code/formatters"
 	"context"
 	"fmt"
-	"formatters"
 	"os"
 
 	"github.com/urfave/cli/v3"
