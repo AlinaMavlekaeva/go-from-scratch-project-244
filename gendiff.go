@@ -5,6 +5,7 @@ import (
 	"code/formatters"
 	"code/parsers"
 	"slices"
+	"strings"
 )
 
 func getKeys(infos ...map[string]any) []string {
@@ -122,5 +123,6 @@ func GenDiff(path1, path2, format string) (string, error) {
 	tree := getTree(info1, info2, 0)
 	formatter := formatters.GetFormatter(format)
 	diff := formatter(tree)
+	diff = strings.TrimSuffix(diff, "\n")
 	return diff, nil
 }
