@@ -1,11 +1,11 @@
 package formatters
 
 import (
-	"code"
+	"code/entities"
 	"encoding/json"
 )
 
-func JSONFormat(head code.Tree) string {
+func JSONFormat(head entities.Tree) string {
 	data, err := json.MarshalIndent(head, "", "  ")
 	if err != nil {
 		return ""

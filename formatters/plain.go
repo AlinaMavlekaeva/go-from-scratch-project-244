@@ -1,7 +1,7 @@
 package formatters
 
 import (
-	"code"
+	"code/entities"
 	"fmt"
 	"strings"
 )
@@ -10,7 +10,7 @@ func PrintValue(value any) any {
 	switch val := value.(type) {
 	case string:
 		return fmt.Sprintf("'%s'", val)
-	case code.Tree, []code.Tree:
+	case entities.Tree, []entities.Tree:
 		return "[complex value]"
 	case nil:
 		return "null"
@@ -25,11 +25,11 @@ var FormatByStat = map[string]string{
 	"updated": "Property '%s' was updated. From %v to %v\n",
 }
 
-func PlainFormat(head code.Tree) string {
+func PlainFormat(head entities.Tree) string {
 	var bldr strings.Builder
-	var children []code.Tree
+	var children []entities.Tree
 	switch val := head.Value.(type) {
-	case []code.Tree:
+	case []entities.Tree:
 		children = val
 	}
 	for _, tree := range children {

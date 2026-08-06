@@ -6,4 +6,3 @@ lint-fix:
 	golangci-lint	run	--fix
 test:
 	go test code -cover
-	go test code/formatters -cover

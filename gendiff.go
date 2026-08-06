@@ -1,17 +1,11 @@
 package code
 
 import (
+	"code/entities"
+	"code/formatters"
 	"code/parsers"
 	"slices"
 )
-
-type Tree struct {
-	Key      string `json:"key"`
-	Status   string `json:"status"`
-	OldValue any    `json:"oldValue"`
-	Value    any    `json:"value"`
-	Deep     int    `json:"deep"`
-}
 
 func getKeys(infos ...map[string]any) []string {
 	keys := []string{}
@@ -25,20 +19,20 @@ func getKeys(infos ...map[string]any) []string {
 	return keys
 }
 
-func getValue(info map[string]any, deep int) []Tree {
-	children := []Tree{}
+func getValue(info map[string]any, deep int) []entities.Tree {
+	children := []entities.Tree{}
 	keys := getKeys(info)
 	for _, key := range keys {
 		switch value := info[key].(type) {
 		case map[string]any:
-			child := Tree{
+			child := entities.Tree{
 				Key:   key,
 				Deep:  deep,
 				Value: getValue(value, deep+1),
 			}
 			children = append(children, child)
 		default:
-			child := Tree{
+			child := entities.Tree{
 				Key:   key,
 				Value: value,
 				Deep:  deep,
@@ -49,9 +43,9 @@ func getValue(info map[string]any, deep int) []Tree {
 	return children
 }
 
-func getTree(info1, info2 map[string]any, deep int) Tree {
-	Head := Tree{}
-	var headValue []Tree
+func getTree(info1, info2 map[string]any, deep int) entities.Tree {
+	Head := entities.Tree{}
+	var headValue []entities.Tree
 	keys := getKeys(info1, info2)
 	deep++
 	for _, k := range keys {
@@ -70,21 +64,21 @@ func getTree(info1, info2 map[string]any, deep int) Tree {
 						headValue = append(headValue, child)
 					default:
 						oldValue := getValue(val1, deep+1)
-						child := Tree{Key: k, Status: "updated", Deep: deep, OldValue: oldValue, Value: val2}
+						child := entities.Tree{Key: k, Status: "updated", Deep: deep, OldValue: oldValue, Value: val2}
 						headValue = append(headValue, child)
 					}
 				default:
 					switch val2 := v2.(type) {
 					case map[string]any:
 						newValue := getValue(val2, deep+1)
-						child := Tree{Key: k, Status: "updated", Deep: deep, OldValue: val1, Value: newValue}
+						child := entities.Tree{Key: k, Status: "updated", Deep: deep, OldValue: val1, Value: newValue}
 						headValue = append(headValue, child)
 					default:
 						if v1 == v2 {
-							child := Tree{Key: k, Status: "same", Deep: deep, Value: v1}
+							child := entities.Tree{Key: k, Status: "same", Deep: deep, Value: v1}
 							headValue = append(headValue, child)
 						} else {
-							child := Tree{Key: k, Status: "updated", Deep: deep, OldValue: v1, Value: v2}
+							child := entities.Tree{Key: k, Status: "updated", Deep: deep, OldValue: v1, Value: v2}
 							headValue = append(headValue, child)
 						}
 					}
@@ -93,10 +87,10 @@ func getTree(info1, info2 map[string]any, deep int) Tree {
 				switch val1 := v1.(type) {
 				case map[string]any:
 					value := getValue(val1, deep+1)
-					child := Tree{Key: k, Status: "removed", Deep: deep, Value: value}
+					child := entities.Tree{Key: k, Status: "removed", Deep: deep, Value: value}
 					headValue = append(headValue, child)
 				default:
-					child := Tree{Key: k, Status: "removed", Deep: deep, Value: v1}
+					child := entities.Tree{Key: k, Status: "removed", Deep: deep, Value: v1}
 					headValue = append(headValue, child)
 				}
 			}
@@ -104,10 +98,10 @@ func getTree(info1, info2 map[string]any, deep int) Tree {
 			switch val2 := v2.(type) {
 			case map[string]any:
 				value := getValue(val2, deep+1)
-				child := Tree{Key: k, Status: "added", Deep: deep, Value: value}
+				child := entities.Tree{Key: k, Status: "added", Deep: deep, Value: value}
 				headValue = append(headValue, child)
 			default:
-				child := Tree{Key: k, Status: "added", Deep: deep, Value: v2}
+				child := entities.Tree{Key: k, Status: "added", Deep: deep, Value: v2}
 				headValue = append(headValue, child)
 			}
 		}
@@ -116,15 +110,17 @@ func getTree(info1, info2 map[string]any, deep int) Tree {
 	return Head
 }
 
-func GenDiff(path1, path2 string) (Tree, error) {
+func GenDiff(path1, path2, format string) (string, error) {
 	info1, err := parsers.Parse(path1)
 	if err != nil {
-		return Tree{}, err
+		return "", err
 	}
 	info2, err := parsers.Parse(path2)
 	if err != nil {
-		return Tree{}, err
+		return "", err
 	}
 	tree := getTree(info1, info2, 0)
-	return tree, nil
+	formatter := formatters.GetFormatter(format)
+	diff := formatter(tree)
+	return diff, nil
 }

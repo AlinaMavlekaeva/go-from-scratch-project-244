@@ -1,7 +1,7 @@
 package formatters
 
 import (
-	"code"
+	"code/entities"
 	"fmt"
 	"strings"
 )
@@ -23,11 +23,11 @@ var specSymbols = map[string]string{
 	"":        "%s%s: %v\n",
 }
 
-func StylishFormat(head code.Tree) string {
+func StylishFormat(head entities.Tree) string {
 	var bldr strings.Builder
 	key := head.Key
 	switch val := head.Value.(type) {
-	case []code.Tree:
+	case []entities.Tree:
 		offset := addOffset(" ", 4, head.Deep, 2)
 		switch head.Status {
 		case "added":
@@ -57,7 +57,7 @@ func StylishFormat(head code.Tree) string {
 		switch head.Status {
 		case "updated":
 			switch val := head.OldValue.(type) {
-			case []code.Tree:
+			case []entities.Tree:
 				fmt.Fprintf(&bldr, "%s- %s: {\n", offset, key)
 				for _, child := range val {
 					bldr.WriteString(StylishFormat(child))
