@@ -20,7 +20,7 @@ func PrintValue(value any) any {
 }
 
 var FormatByStat = map[string]string{
-	"added":   "Property '%s' was added with value %v\n",
+	"added":   "Property '%s' was added with value: %v\n",
 	"removed": "Property '%s' was removed\n",
 	"updated": "Property '%s' was updated. From %v to %v\n",
 }

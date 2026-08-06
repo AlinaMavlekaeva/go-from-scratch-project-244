@@ -54,6 +54,12 @@ func StylishFormat(head entities.Tree) string {
 		fmt.Fprintf(&bldr, "%s}\n", offset)
 	default:
 		offset := addOffset(" ", 4, head.Deep, 2)
+		if head.Value == nil {
+			head.Value = "null"
+		}
+		if head.OldValue == nil {
+			head.OldValue = "null"
+		}
 		switch head.Status {
 		case "updated":
 			switch val := head.OldValue.(type) {
